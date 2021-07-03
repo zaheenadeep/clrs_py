@@ -1,10 +1,7 @@
 from math import inf
-
 from max_heap import MaxHeap
 
-
 class MaxPriorityQueue(MaxHeap):
-
     def __init__(self):
         MaxHeap.__init__(self)
 
@@ -14,27 +11,27 @@ class MaxPriorityQueue(MaxHeap):
     def extract_max(self):
         if self._heap_size < 1:
             raise HeapUnderflowError
-        max, self._data[0] = self._data[0], self._data[self._heap_size - 1]
+        max, self._data[0] = self._data[0], self._data[self._heap_size-1]
         self._heap_size -= 1
         self._max_heapify(0)
         return max
 
     def increase_key(self, i, key):
         if key < self._data[i]:
-            raise ValueError("New key is smaller than current key.")
-        self._data[i] = key
-        while i > 0 and self._data[self._parent(i)] < self._data[i]:
-            self._swap(i, self._parent(i))
+            raise ValueError("key is smaller than the current key")
+        while i > 0 and key > self._data[self._parent(i)]:
+            self._data[i] = self._data[self._parent(i)]
             i = self._parent(i)
+        self._data[i] = key
 
     def insert(self, key):
         self._heap_size += 1
-        if self._heap_size <= len(self._data):
-            self._data[self._heap_size - 1] = -inf
-        else:
+        if self._heap_size > len(self._data) or len(self._data) == 0:
             self._data.append(-inf)
+        else:
+            self._data[self._heap_size - 1] = -inf
+
         self.increase_key(self._heap_size - 1, key)
-        return self
 
 
 class HeapUnderflowError(Exception):

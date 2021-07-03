@@ -22,17 +22,17 @@ class MaxHeap:
     def _swap(self, i, j):
         self._data[i], self._data[j] = self._data[j], self._data[i]
 
-    @classmethod
-    def _left(cls, i):
+    @staticmethod
+    def _parent(i):
+        return (i - 1) // 2
+
+    @staticmethod
+    def _left(i):
         return 2 * i + 1
 
-    @classmethod
-    def _right(cls, i):
+    @staticmethod
+    def _right(i):
         return 2 * i + 2
-
-    @classmethod
-    def _parent(cls, i):
-        return (i - 1) // 2
 
     def _max_heapify(self, i):
         data = self._data
@@ -59,8 +59,8 @@ class MaxHeap:
         for i in range(self._heap_size // 2 - 1, -1, -1):
             self._max_heapify(i)
 
-    @classmethod
-    def heapsort(cls, data):
+    @staticmethod
+    def heapsort(data):
         max_heap = MaxHeap()
         max_heap.build_max_heap(data)
         for i in range(max_heap._heap_size - 1, max_heap._heap_size - 3, -1):
