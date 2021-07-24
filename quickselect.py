@@ -40,4 +40,4 @@ def quickselect(arr, i):
 if __name__ == '__main__':
     arr = [7, 4, 2, 5, 6, 2, 1, 5, 54]
     print(quickselect(arr, 6))  # 2
-    print(quickselect(arr, 45))  # 2
+    print(quickselect(arr, 45))  # Error
