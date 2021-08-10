@@ -12,12 +12,17 @@ class TreeNode:
     def predecessor(self):
         pass
 
+    def min(self):
+        localroot = self
+        while localroot.left != None:
+            localroot = localroot.left
+        return localroot
 
-    def _min(self):
-        pass
-
-    def _max(self):
-        while
+    def max(self):
+        localroot = self
+        while localroot.right != None:
+            localroot = localroot.right
+        return localroot
 
     def _recursive_search(self, key):
         pass
@@ -61,3 +66,9 @@ class BinarySearchTree:
             return BinarySearchTree.search(localroot.left, key)
         else:
             return BinarySearchTree.search(localroot.right, key)
+
+    def max(self):
+        return self.root.min() if self.root else None
+
+    def max(self):
+        return self.root.max() if self.root else None
