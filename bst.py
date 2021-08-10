@@ -18,7 +18,15 @@ class TreeNode:
         return par
 
     def predecessor(self):
-        pass
+        if self.left:
+            return self.left.max()
+
+        curr = self
+        par = curr.parent
+        while par != None and par.left == curr:
+            curr = par
+            par = par.parent
+        return par
 
     def min(self):
         localroot = self
