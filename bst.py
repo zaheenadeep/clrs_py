@@ -7,7 +7,15 @@ class TreeNode:
 
 
     def successor(self):
-        pass
+        if self.right:
+            return self.right.min()
+
+        curr = self
+        par = curr.parent
+        while par != None and par.right == curr:
+            curr = par
+            par = par.parent
+        return par
 
     def predecessor(self):
         pass
@@ -41,7 +49,7 @@ class BinarySearchTree:
     def _inorder_walk(localroot):
         if localroot != None:
             BinarySearchTree._inorder_walk(localroot.left)
-            print(localroot.key)
+            print(localroot.key, end = " ")
             BinarySearchTree._inorder_walk(localroot.right)
 
     def search(self, key):
