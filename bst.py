@@ -58,7 +58,7 @@ class BinarySearchTree:
     def search(self, key):
         """ Return the node which contains the specified key """
         local_root = self.root
-        while local_root is not None or local_root is not key:
+        while local_root is not None and local_root.key != key:
             if key < local_root:
                 local_root = local_root.left
             else:
