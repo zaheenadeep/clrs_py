@@ -1,10 +1,9 @@
 class TreeNode:
-    def __init__(self, key, parent = None, left = None, right = None):
-        self.key = None
+    def __init__(self, key, parent=None, left=None, right=None):
+        self.key = key
         self.parent = parent
         self.left = left
         self.right = right
-
 
     def successor(self):
         if self.right:
@@ -12,7 +11,7 @@ class TreeNode:
 
         curr = self
         par = curr.parent
-        while par != None and par.right == curr:
+        while par is not None and par.right == curr:
             curr = par
             par = par.parent
         return par
@@ -23,26 +22,22 @@ class TreeNode:
 
         curr = self
         par = curr.parent
-        while par != None and par.left == curr:
+        while par is not None and par.left == curr:
             curr = par
             par = par.parent
         return par
 
     def min(self):
-        localroot = self
-        while localroot.left != None:
-            localroot = localroot.left
-        return localroot
+        local_root = self
+        while local_root.left is not None:
+            local_root = local_root.left
+        return local_root
 
     def max(self):
-        localroot = self
-        while localroot.right != None:
-            localroot = localroot.right
-        return localroot
-
-    def _recursive_search(self, key):
-        pass
-
+        local_root = self
+        while local_root.right is not None:
+            local_root = local_root.right
+        return local_root
 
 
 class BinarySearchTree:
@@ -54,36 +49,35 @@ class BinarySearchTree:
         BinarySearchTree._inorder_walk(self.root)
 
     @staticmethod
-    def _inorder_walk(localroot):
-        if localroot != None:
-            BinarySearchTree._inorder_walk(localroot.left)
-            print(localroot.key, end = " ")
-            BinarySearchTree._inorder_walk(localroot.right)
+    def _inorder_walk(local_root):
+        if local_root is not None:
+            BinarySearchTree._inorder_walk(local_root.left)
+            print(local_root.key, end=" ")
+            BinarySearchTree._inorder_walk(local_root.right)
 
     def search(self, key):
         """ Return the node which contains the specified key """
-        localroot = self.root
-        while localroot != None or localroot != key:
-            if key < localroot:
-                localroot = localroot.left
+        local_root = self.root
+        while local_root is not None or local_root is not key:
+            if key < local_root:
+                local_root = local_root.left
             else:
-                localroot = localroot.right
-        return localroot
-
+                local_root = local_root.right
+        return local_root
 
     def recursive_search(self, key):
         return BinarySearchTree._recursive_search(self.root, key)
 
     @staticmethod
-    def _recursive_search(localroot, key):
-        if localroot == None or localroot.key == key:
-            return localroot
-        elif key < localroot.key:
-            return BinarySearchTree.search(localroot.left, key)
+    def _recursive_search(local_root, key):
+        if local_root is None or local_root.key == key:
+            return local_root
+        elif key < local_root.key:
+            return BinarySearchTree.search(local_root.left, key)
         else:
-            return BinarySearchTree.search(localroot.right, key)
+            return BinarySearchTree.search(local_root.right, key)
 
-    def max(self):
+    def min(self):
         return self.root.min() if self.root else None
 
     def max(self):
