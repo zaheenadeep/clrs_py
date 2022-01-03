@@ -4,4 +4,4 @@ def rprop(x):
     else:
         return x | (x - 1)
 
-print(bin(rprop(0b10100000)))
+print(bin(rprop(0b100010000)))
