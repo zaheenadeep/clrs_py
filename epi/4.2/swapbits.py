@@ -1,14 +1,7 @@
-def set(x, bit, idx):
-    if bit:
-        return x | (1 << idx)
-    else:
-        return x & ~(1 << idx)
-
 def swapbits(x, i, j):
-    p = (x & (1 << i)) >> i
-    q = (x & (1 << j)) >> j
-    x = set(x, p, j)
-    x = set(x, q, i)
+    if ((x >> i) & 1) != ((x >> j) & 1): # different bits
+        mask = (1 < i) | (1 < j)
+        x ^= mask # swap
     return x
 
-print(swapbits(73, 6, 1))
+print(swapbits(739999999999999, 363, 343434))
